@@ -1,7 +1,7 @@
 CC = gcc
 LD = gcc
-CFLAGS = -Wall -c -O3 
-LDFLAGS = -Wall -O3
+CFLAGS = -Wall -c -O3 -g 
+LDFLAGS = -Wall -O3 -g
 
 all: speedtest.elf
 
