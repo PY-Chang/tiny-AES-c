@@ -569,13 +569,13 @@ void AES_CTR_xcrypt_buffer(struct AES_ctx* ctx, uint8_t* buf, size_t length)
       }
   }
 
-  #pragma omp parallel for
+  #pragma omp parallel for schedule(static)
   for (i=0; i<buffer_numbers; i++)
   {
     Cipher((state_t*)&buffer[i*AES_BLOCKLEN],ctx->RoundKey);
   }
 
-  #pragma omp parallel for
+  #pragma omp parallel for schedule(static)
   for(i=0; i < length; ++i)
   {
     buf[i] ^= buffer[i];
