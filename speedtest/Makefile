@@ -1,7 +1,7 @@
-CC = gcc
-LD = gcc
-CFLAGS = -Wall -c -O3 -g 
-LDFLAGS = -Wall -O3 -g
+CC = clang
+LD = clang
+CFLAGS = -Wall -c -Ofast -fopenmp #-g
+LDFLAGS = -Wall -Ofast -fopenmp #-g
 
 all: speedtest.elf
 
