@@ -558,7 +558,7 @@ void AES_CTR_xcrypt_buffer(struct AES_ctx* ctx, uint8_t* buf, size_t length)
     // #pragma omp ordered
     for (bi = (AES_BLOCKLEN - 1); bi >= 0; --bi)
       {
-	/* inc will overflow */
+	      /* inc will overflow */
         if (ctx->Iv[bi] == 255)
 	      {
           ctx->Iv[bi] = 0;
@@ -572,7 +572,7 @@ void AES_CTR_xcrypt_buffer(struct AES_ctx* ctx, uint8_t* buf, size_t length)
   #pragma omp parallel for schedule(static)
   for (i=0; i<buffer_numbers; i++)
   {
-    Cipher((state_t*)&buffer[i*AES_BLOCKLEN],ctx->RoundKey);
+    Cipher((state_t*)&buffer[i*AES_BLOCKLEN], ctx->RoundKey);
   }
 
   #pragma omp parallel for schedule(static)
