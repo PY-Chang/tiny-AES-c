@@ -25,9 +25,9 @@ int main()
 {
   const uint32_t MEGABYTE = 1024 * 1024 * sizeof(uint8_t);
   
-  uint32_t megabytesCount = 100;
+  uint32_t megabytesCount = 1024;
   const uint32_t bytesCount = megabytesCount * 1024 * 1024;
-    // const uint32_t bytesCount = 64;
+  // const uint32_t bytesCount = 64;
 
   uint32_t plainLength = megabytesCount * MEGABYTE;
 
@@ -49,7 +49,7 @@ int main()
   srand(time(NULL));
 
   // uint8_t *plain = getRandomPlain(plainLength);
-  uint8_t *plain = (uint8_t*)calloc(plainLength, sizeof(uint8_t));
+  uint8_t *plain = (uint8_t*)calloc(bytesCount, sizeof(uint8_t));
 
   struct AES_ctx ctx;
   // AES_init_ctx(&ctx, key);
@@ -64,11 +64,11 @@ int main()
   double endTime = currentSeconds();
 
   double delta = endTime - startTime;
-  printf("AES_CTR_xcrypt_buffer: %f ms\n", delta * 1000);
+  printf("AES_CTR_xcrypt_buffer: %.2f ms\n", delta * 1000);
 
-  double speed = ((double)(bytesCount) / (delta * 1000)) * 1e-2;
+  double speed = ((double)(bytesCount) / (delta * 1000)) * 1e-3;
 
-  printf("%.2f MB/s\n", speed);
+  printf("%.2f Mb/s\n", speed*8);
 
   // if (0 == memcmp((char*) out, (char*) in, 64)) {
   //   printf("SUCCESS!\n");
